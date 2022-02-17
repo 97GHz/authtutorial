@@ -21,6 +21,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 
 // Content-Type : application/x-www-form-urlencoded
 // Body : username=john&password=1234
@@ -60,7 +62,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         Map<String, String> tokens = new HashMap<>();
         tokens.put("access_token", access_token);
         tokens.put("refresh_token", refresh_token);
-        response.setContentType("application/json");
+        response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), tokens);
     }
 }
